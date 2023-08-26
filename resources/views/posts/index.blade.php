@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="text-center">
-        <button type="button" class="btn btn-success">Create Post</button>
+        <a href="{{route('posts.create')}}" class="btn btn-success">Create Post</a>
     </div>
 
     <table class="table mt-4">

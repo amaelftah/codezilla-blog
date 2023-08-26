@@ -25,4 +25,30 @@ class PostController extends Controller
 
         return view('posts.show', ['post' => $singlePost]);
     }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store()
+    {
+//        $request = request();
+//
+//        dd($request->title, $request->all());
+
+        //1- get the user data
+        $data = request()->all();
+
+        $title = request()->title;
+        $description = request()->description;
+        $postCreator = request()->post_creator;
+
+//        dd($data, $title, $description, $postCreator);
+
+        //2- store the user data in database
+
+        //3- redirection to posts.index
+        return to_route('posts.index');
+    }
 }
