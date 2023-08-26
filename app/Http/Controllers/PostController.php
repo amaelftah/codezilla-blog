@@ -56,4 +56,21 @@ class PostController extends Controller
     {
         return view('posts.edit');
     }
+
+    public function update()
+    {
+        //1- get the user data
+
+        $title = request()->title;
+        $description = request()->description;
+        $postCreator = request()->post_creator;
+
+//        dd($title, $description, $postCreator);
+
+        //2- update the user data in database
+
+        //3- redirection to posts.show
+
+        return to_route('posts.show', 1);
+    }
 }
