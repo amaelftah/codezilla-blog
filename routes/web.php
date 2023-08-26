@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test',[TestController::class, 'testAction']);
+Route::get('/posts',[PostController::class, 'index']);
 
 //1- define a new route so the user can access it through browser
 //2- define controller that renders a view
