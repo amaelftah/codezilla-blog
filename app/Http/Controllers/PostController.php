@@ -73,4 +73,12 @@ class PostController extends Controller
 
         return to_route('posts.show', 1);
     }
+
+    public function destroy()
+    {
+        //1- delete the post from database
+
+        //2- redirect to posts.index
+        return to_route('posts.index');
+    }
 }
