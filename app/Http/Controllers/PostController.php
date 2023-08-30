@@ -17,10 +17,16 @@ class PostController extends Controller
         return view('posts.index', ['posts' => $postsFromDB]);
     }
 
-    public function show($postId)
+    //convention over configuration
+    public function show(Post $post) //type hinting
     {
-        //select * from posts where id = $postId;
-        $singlePostFromDB = Post::find($postId); //model object
+        //select * from posts where id = $postId limit 1;
+//        $singlePostFromDB = Post::find($postId); //model object
+//        $singlePostFromDB = Post::findOrFail($postId); //model object
+
+//        if(is_null($singlePostFromDB)) {
+//            return to_route('posts.index');
+//        }
 
 //        $singlePostFromDB = Post::where('id', $postId)->first(); //model object
 
@@ -31,7 +37,7 @@ class PostController extends Controller
 //        Post::where('title', 'php')->get() //select * from posts where title = 'php';
 
 
-        return view('posts.show', ['post' => $singlePostFromDB]);
+        return view('posts.show', ['post' => $post]);
     }
 
     public function create()
