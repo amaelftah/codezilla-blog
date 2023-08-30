@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -42,7 +43,10 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        //select * from users;
+        $users = User::all();
+
+        return view('posts.create', ['users' => $users]);
     }
 
     public function store()
@@ -60,18 +64,33 @@ class PostController extends Controller
 
 //        dd($data, $title, $description, $postCreator);
 
-        //2- store the user data in database
+        //2- store the submitted data in database
+//        $post = new Post;
+//
+//        $post->title = $title;
+//        $post->description = $description;
+//
+//        $post->save();// insert into posts ('t','d')
+
+        Post::create([
+            'title' => $title,
+            'description' => $description,
+            'xyz' => 'some value' //ignore
+        ]);
 
         //3- redirection to posts.index
         return to_route('posts.index');
     }
 
-    public function edit()
+    public function edit(Post $post)
     {
-        return view('posts.edit');
+        //select * from users;
+        $users = User::all();
+
+        return view('posts.edit', ['users' => $users, 'post' => $post]);
     }
 
-    public function update()
+    public function update($postId)
     {
         //1- get the user data
 
@@ -81,16 +100,31 @@ class PostController extends Controller
 
 //        dd($title, $description, $postCreator);
 
-        //2- update the user data in database
+        //2- update the submitted data in database
+            //select or find the post
+            //update the post data
+        $singlePostFromDB = Post::find($postId);
+        $singlePostFromDB->update([
+            'title' => $title,
+            'description' => $description,
+        ]);
+
+//        dd($singlePostFromDB);
 
         //3- redirection to posts.show
 
-        return to_route('posts.show', 1);
+        return to_route('posts.show', $postId);
     }
 
-    public function destroy()
+    public function destroy($postId)
     {
         //1- delete the post from database
+            //select or find the post
+            //delete the post from database
+        $post = Post::find($postId);
+        $post->delete();
+
+        Post::where('id', $postId)->delete();
 
         //2- redirect to posts.index
         return to_route('posts.index');
