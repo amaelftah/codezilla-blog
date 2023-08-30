@@ -32,5 +32,5 @@ Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.upda
 
 Route::delete('/posts/{post}',[PostController::class, 'destroy'])->name('posts.destroy');
 
-//1- define a new route so the user can access it through browser
-//2- define view that contains create post form
+//1- structure change for database (create table , edit column , remove column)
+//2- operations on database (insert record, edit record, delete record)
