@@ -75,7 +75,8 @@ class PostController extends Controller
         Post::create([
             'title' => $title,
             'description' => $description,
-            'xyz' => 'some value' //ignore
+            'xyz' => 'some value', //ignore,
+            'user_id' => $postCreator,
         ]);
 
         //3- redirection to posts.index
@@ -107,6 +108,7 @@ class PostController extends Controller
         $singlePostFromDB->update([
             'title' => $title,
             'description' => $description,
+            'user_id' => $postCreator,
         ]);
 
 //        dd($singlePostFromDB);

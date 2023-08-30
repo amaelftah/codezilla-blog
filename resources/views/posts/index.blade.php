@@ -23,7 +23,7 @@
             <tr>
                 <td>{{$post->id}}</td>
                 <td>{{$post->title}}</td>
-                <td>{{$post->posted_by}}</td>
+                <td>{{$post->user ? $post->user->name : 'not found'}}</td>
                 <td>{{$post->created_at}}</td>
                 <td>
 {{--                    /posts/{{$post['id']}}--}}
