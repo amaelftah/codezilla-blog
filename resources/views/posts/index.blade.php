@@ -24,7 +24,7 @@
                 <td>{{$post->id}}</td>
                 <td>{{$post->title}}</td>
                 <td>{{$post->user ? $post->user->name : 'not found'}}</td>
-                <td>{{$post->created_at}}</td>
+                <td>{{$post->created_at->format('Y-m-d')}}</td>
                 <td>
 {{--                    /posts/{{$post['id']}}--}}
                     <a href="{{route('posts.show', $post->id)}}" class="btn btn-info">View</a>
